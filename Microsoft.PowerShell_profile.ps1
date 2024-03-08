@@ -2,10 +2,10 @@ oh-my-posh init pwsh --config $env:POSH_THEMES_PATH/dracula.omp.json | Invoke-Ex
 
 function openRemote {
     $origin = git config remote.origin.url
-    if ($origin -match "") {
-        echo "No remote origin found"
+    if (-not $origin) {
+        Write-Host "No remote origin found. Please ensure you are in a Git repository and a remote origin is set."
     } else {
-        Start $origin
+        Start-Process $origin
     }
 }
 
